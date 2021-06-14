@@ -18,7 +18,7 @@ export default function Home({ products }) {
     <>
       <Meta title='Tech Cart | Home' desc='Mock motherboard shopping cart' keywords='motherboards tech' />
 
-      <main>
+      <main className='pt-20'>
         <h1>Shop Our Motherboards</h1>
         <Products products={products} />
       </main>
