@@ -129,12 +129,11 @@ const Checkout = () => {
 
     return (
         <>
-            <main>
-                <div>
-                    <h1>
-                        Checkout
-                    </h1>
-                    {/* <Stepper activeStep={activeStep} className={classes.stepper}>
+            <main className='pt-20 p-4 max-w-2xl mx-auto'>
+                <h1 className='text-center text-2xl'>
+                    Checkout
+                </h1>
+                {/* <Stepper activeStep={activeStep} className={classes.stepper}>
                         {steps.map(step => (
                             <Step key={step}>
                                 <StepLabel>{step}</StepLabel>
@@ -142,13 +141,12 @@ const Checkout = () => {
                         ))}
                     </Stepper> */}
 
-                    <Stepper
-                        steps={steps}
-                        currentStepNumber={activeStep}
-                    />
+                <Stepper
+                    steps={steps}
+                    currentStepNumber={activeStep}
+                />
 
-                    {activeStep === steps.length ? <Confirmation /> : checkoutToken && <Form />}
-                </div>
+                {activeStep === steps.length ? <Confirmation /> : checkoutToken && <Form />}
             </main>
         </>
     )

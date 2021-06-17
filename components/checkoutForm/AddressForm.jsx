@@ -51,40 +51,42 @@ const AddressForm = ({ proceed, checkoutToken }) => {
 
 
     return (
-        <>
-            <h1>Shipping Address</h1>
+        <div className='mt-10'>
+            <h2 className='text-xl'>Shipping Address</h2>
             <form
                 //  onSubmit={methods.handleSubmit((data) => proceed({ ...data, shippingState, shippingOption }))}
+                className='mt-4'
                 onSubmit={handleSubmit(data => proceed({ ...data, shippingState, shippingOption }))}
             >
-                <div>
+                <div className='text-lg grid sm:grid-cols-2 gap-y-5 gap-x-4'>
                     <div>
-                        <label htmlFor='firstName'>First Name</label>
-                        <input type="text" name='firstName' placeholder='First Name' {...register('firstName')} />
+                        <label htmlFor='firstName' className='block'>First Name</label>
+                        <input type="text" name='firstName' placeholder='First Name' {...register('firstName')} className='w-full' required />
                     </div>
                     <div>
-                        <label htmlFor='lastName'>Last Name</label>
-                        <input type="text" name='lastName' placeholder='Last Name' {...register('lastName')} />
+                        <label htmlFor='lastName' className='block'>Last Name</label>
+                        <input type="text" name='lastName' placeholder='Last Name' {...register('lastName')} className='w-full'  required />
                     </div>
                     <div>
-                        <label htmlFor='email'>Email</label>
-                        <input type="email" name='email' placeholder='Email' {...register('email')} />
+                        <label htmlFor='email' className='block'>Email</label>
+                        <input type="email" name='email' placeholder='Email' {...register('email')} className='w-full'  required />
                     </div>
                     <div>
-                        <label htmlFor='address'>Address</label>
-                        <input type="text" name='address' placeholder='Address' {...register('address')} />
+                        <label htmlFor='address' className='block'>Address</label>
+                        <input type="text" name='address' placeholder='Address' {...register('address')} className='w-full'  required />
                     </div>
                     <div>
-                        <label htmlFor='city'>City</label>
-                        <input type="text" name='city' placeholder='City' {...register('city')} />
+                        <label htmlFor='city' className='block'>City</label>
+                        <input type="text" name='city' placeholder='City' {...register('city')} className='w-full'  required />
                     </div>
                     <div>
-                        <label htmlFor='stateLabel'>State</label>
+                        <label htmlFor='stateLabel' className='block'>State</label>
                         <select
                             name="stateLabel"
                             //   id="stateLabel"
                             value={shippingState}
                             onChange={e => setShippingState(e.target.value)}
+                            required
                         //  {...register('stateLabel')}
                         >
                             {states.map(state => (
@@ -93,16 +95,17 @@ const AddressForm = ({ proceed, checkoutToken }) => {
                         </select>
                     </div>
                     <div>
-                        <label htmlFor='zip'>Zip</label>
-                        <input type="text" name='zip' placeholder='Zip' {...register('zip')} />
+                        <label htmlFor='zip' className='block'>Zip</label>
+                        <input type="text" name='zip' placeholder='Zip' {...register('zip')} className='w-full'  required />
                     </div>
                     <div>
-                        <label htmlFor='shippingOptionsLabel'>Shipping Options</label>
+                        <label htmlFor='shippingOptionsLabel' className='block'>Shipping Options</label>
                         <select
                             name="shippingOptionsLabel"
                             //  id="shippingOptionsLabel"
                             value={shippingOption}
                             onChange={e => setShippingOption(e.target.value)}
+                            required
                         // {...register('shippingOptionsLabel')}
                         >
                             {options.map(option => (
@@ -112,14 +115,14 @@ const AddressForm = ({ proceed, checkoutToken }) => {
                     </div>
                 </div>
                 <br />
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <div className='flex justify-between mt-6'>
                     <Link href='/cart'><a>
-                        <button>Back to Cart</button>
+                        <button className='text-xl border rounded-full py-1 px-4 bg-purple-500 text-white hover:bg-purple-400 focus:outline-none'>Back to Cart</button>
                     </a></Link>
-                    <button type='submit'>Next</button>
+                    <button type='submit' className='text-xl border rounded-full py-1 px-4 bg-green-700 text-white hover:bg-green-600 focus:outline-none'>Next</button>
                 </div>
             </form>
-        </>
+        </div>
     )
 }
 

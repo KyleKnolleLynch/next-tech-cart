@@ -5,7 +5,7 @@ import Review from './Review'
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY)
 
 const PaymentForm = ({ shippingData, checkoutToken, backStep, nextStep, onCaptureCheckout, timeout }) => {
-  
+
     const handleSubmit = async (e, elements, stripe) => {
         e.preventDefault()
 
@@ -55,7 +55,7 @@ const PaymentForm = ({ shippingData, checkoutToken, backStep, nextStep, onCaptur
         <>
             <Review checkoutToken={checkoutToken} />
             <hr />
-            <h3 style={{ margin: '20px 0' }}>
+            <h3 className='my-6 text-lg'>
                 Payment Method
             </h3>
             <Elements stripe={stripePromise}>
@@ -63,11 +63,9 @@ const PaymentForm = ({ shippingData, checkoutToken, backStep, nextStep, onCaptur
                     {(elements, stripe) => (
                         <form onSubmit={e => handleSubmit(e, elements, stripe)}>
                             <CardElement />
-                            <br />
-                            <br />
-                            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                <button onClick={backStep}>Back</button>
-                                <button type='submit'>Pay {checkoutToken.live.subtotal.formatted_with_symbol}</button>
+                            <div className='flex justify-between mt-14'>
+                                <button onClick={backStep} className='text-xl border rounded-full py-1 px-4 bg-purple-500 text-white hover:bg-purple-400 focus:outline-none'>Back</button>
+                                <button type='submit' className='text-2xl border rounded-full py-1 px-4 bg-yellow-400 text-blue-500 hover:bg-yellow-300 focus:outline-none'>Pay {checkoutToken.live.subtotal.formatted_with_symbol}</button>
                             </div>
                         </form>
                     )}
