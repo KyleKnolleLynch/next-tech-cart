@@ -43,7 +43,7 @@ const Cart = () => {
                     <h2 className='text-xl mt-6'>
                         Subtotal: {subtotal.formatted_with_symbol}
                     </h2>
-                    <div className='flex justify-around mt-6'>
+                    <div className='flex justify-between mt-6'>
                         <button
                             onClick={handleEmptyCart}
                             type='button'

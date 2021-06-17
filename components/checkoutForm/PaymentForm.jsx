@@ -10,7 +10,7 @@ const PaymentForm = ({ shippingData, checkoutToken, backStep, nextStep, onCaptur
         e.preventDefault()
 
         if (!stripe || !elements) return
-
+       
         const cardElement = elements.getElement(CardElement)
 
         const { error, paymentMethod } = await stripe.createPaymentMethod({ type: 'card', card: cardElement })
@@ -41,7 +41,7 @@ const PaymentForm = ({ shippingData, checkoutToken, backStep, nextStep, onCaptur
                     }
                 }
             }
-
+            
             onCaptureCheckout(checkoutToken.id, orderData)
 
             timeout()
@@ -65,7 +65,7 @@ const PaymentForm = ({ shippingData, checkoutToken, backStep, nextStep, onCaptur
                             <CardElement />
                             <div className='flex justify-between mt-14'>
                                 <button onClick={backStep} className='text-xl border rounded-full py-1 px-4 bg-purple-500 text-white hover:bg-purple-400 focus:outline-none'>Back</button>
-                                <button type='submit' className='text-2xl border rounded-full py-1 px-4 bg-yellow-400 text-blue-500 hover:bg-yellow-300 focus:outline-none'>Pay {checkoutToken.live.subtotal.formatted_with_symbol}</button>
+                                <button type='submit' className='text-2xl border rounded-full py-1 px-4 bg-yellow-400 text-indigo-800 hover:bg-yellow-300 focus:outline-none'>Pay {checkoutToken.live.subtotal.formatted_with_symbol}</button>
                             </div>
                         </form>
                     )}

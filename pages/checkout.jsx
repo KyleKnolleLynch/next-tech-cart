@@ -133,19 +133,10 @@ const Checkout = () => {
                 <h1 className='text-center text-2xl'>
                     Checkout
                 </h1>
-                {/* <Stepper activeStep={activeStep} className={classes.stepper}>
-                        {steps.map(step => (
-                            <Step key={step}>
-                                <StepLabel>{step}</StepLabel>
-                            </Step>
-                        ))}
-                    </Stepper> */}
-
                 <Stepper
                     steps={steps}
                     currentStepNumber={activeStep}
                 />
-
                 {activeStep === steps.length ? <Confirmation /> : checkoutToken && <Form />}
             </main>
         </>

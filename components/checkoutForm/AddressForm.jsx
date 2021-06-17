@@ -10,12 +10,11 @@ const AddressForm = ({ proceed, checkoutToken }) => {
     const [shippingState, setShippingState] = useState('')
     const [shippingOptions, setShippingOptions] = useState([])
     const [shippingOption, setShippingOption] = useState('')
-    // const methods = useForm()
     const { register, handleSubmit, error, reset } = useForm()
 
     const states = Object.entries(shippingStates).map(([code, name]) => ({ id: code, label: name }))
     const options = shippingOptions.map(sO => ({ id: sO.id, label: `${sO.description} - (${sO.price.formatted_with_symbol})` }))
-
+    
     const fetchShippingState = async () => {
         const { subdivisions } = await commerce.services.localeListSubdivisions('US')
 
@@ -41,12 +40,12 @@ const AddressForm = ({ proceed, checkoutToken }) => {
     useEffect(() => {
         let mounted = true
 
-        if (mounted && shippingState) {
+        if (mounted) {
             fetchShippingOptions(checkoutToken.id, 'US', shippingState)
         }
 
         return () => mounted = false
-    }, [shippingState, checkoutToken.id])
+    }, [checkoutToken.id])
 
 
 
@@ -54,7 +53,6 @@ const AddressForm = ({ proceed, checkoutToken }) => {
         <div className='mt-10'>
             <h2 className='text-xl'>Shipping Address</h2>
             <form
-                //  onSubmit={methods.handleSubmit((data) => proceed({ ...data, shippingState, shippingOption }))}
                 className='mt-4'
                 onSubmit={handleSubmit(data => proceed({ ...data, shippingState, shippingOption }))}
             >
