@@ -19,7 +19,7 @@ const Cart = () => {
             <div className='mt-6 text-center text-lg'>
                 Your cart is currently empty.
                 <Link href='/'>
-                    <a className='block mt-4 text-purple-500 text-xl font-medium'>
+                    <a className='block mt-4 text-purple-500 text-xl font-medium hover:text-purple-300'>
                         {' '}Start shopping for motherboards!
                     </a>
                 </Link>
@@ -63,6 +63,7 @@ const Cart = () => {
                         </Link>
                     </div>
                 </div>
+                <Link href='/'><a className='mt-14 inline-block text-2xl group'>Keep <span className='font-medium text-purple-400 group-hover:text-purple-300'>Shopping!</span></a></Link>
             </div>
         )
     }

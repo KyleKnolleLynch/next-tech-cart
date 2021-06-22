@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useCartState } from '../contexts/CartContext'
 import { useCartDispatch } from '../contexts/CartContext'
 import { commerce } from '../lib/commerce'
+import Meta from '../components/Meta'
 import Stepper from '../components/Stepper'
 import AddressForm from '../components/checkoutForm/AddressForm'
 import PaymentForm from '../components/checkoutForm/PaymentForm'
@@ -129,6 +130,7 @@ const Checkout = () => {
 
     return (
         <>
+            <Meta title='Tech Cart | Checkout' desc='Tech Cart app checkout page' keywords='motherboards checkout' />
             <main className='pt-20 p-4 max-w-2xl mx-auto'>
                 <h1 className='text-center text-2xl'>
                     Checkout

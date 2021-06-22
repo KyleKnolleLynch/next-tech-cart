@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import Meta from '../components/Meta'
+import Banner from '../components/Banner'
 import Products from '../components/Products'
+import Footer from '../components/Footer'
 import { commerce } from '../lib/commerce'
 import Image from 'next/image'
 import AliceCarousel from 'react-alice-carousel'
@@ -51,23 +53,19 @@ export default function Home({ products }) {
     <>
       <Meta title='Tech Cart | Home' desc='Mock motherboard shopping cart' keywords='motherboards tech' />
 
-      <main className='pt-20'>
-        <section className='-mt-32 py-12 md:py-24 lg:py-52 bg-gradient-to-tr from-indigo-900 to-purple-400 transform -skew-y-6'>
-          <div className='pt-32 pb-10 lg:pt-32 lg:pb-12 text-center transform skew-y-6'>
-            <h1 className='text-white text-3xl font-medium md:text-6xl lg:text-7xl'>Shop Our Motherboards</h1>
-          </div>
-          <div className='w-16 h-4 bg-green-300 opacity-50 absolute right-16 -bottom-2 md:w-28 md:h-6 md:-bottom-4 lg:w-40 lg:h-8 lg:-bottom-6'></div>
-          <div className='w-10 h-4 bg-blue-300 opacity-50 absolute right-9 -bottom-5 md:w-16 md:h-6 md:-bottom-8 lg:w-24 lg:h-8 lg:-bottom-12'></div>
-        </section>
+      <div className='overflow-hidden'>
+        <main className='pt-20'>
+          <Banner title='Shop Our Motherboards' />
+          <section className='max-w-sm xl:max-w-2xl mt-48  md:mt-60 lg:mt-96 mx-auto '>
+            <AliceCarousel items={galleryItems} responsive={responsive} autoPlay autoPlayInterval='3000' infinite />
+          </section>
 
-        <section className='my-36 mx-auto'>
-          <AliceCarousel items={galleryItems} responsive={responsive} autoPlay autoPlayInterval='3000' infinite innerWidth='700' />
-        </section>
-
-        <section>
-          <Products products={products} />
-        </section>
-      </main>
+          <section>
+            <Products products={products} />
+          </section>
+        </main>
+        <Footer />
+      </div>
     </>
   )
 }

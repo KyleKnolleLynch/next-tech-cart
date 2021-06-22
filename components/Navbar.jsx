@@ -7,7 +7,7 @@ const Navbar = () => {
     const { total_items } = useCartState()
 
     return (
-        <nav className='fixed w-full flex justify-between items-center px-8 py-4 bg-white shadow-sm z-10'>
+        <nav className='fixed w-full flex justify-between items-center px-8 py-4 bg-white shadow-sm z-50'>
 
             <Link href='/'><a className='text-2xl flex items-center ml-4'>
                 <span><img src="/images/logo.png" alt="Tech Cart" width='30px' height='30px' /></span>

@@ -1,9 +1,10 @@
 import { useCartDispatch } from '../contexts/CartContext'
 import Image from 'next/image'
+import Link from 'next/link'
 import { commerce } from '../lib/commerce'
 
 
-const CartItem = ({ id, media, name, price, quantity }) => {
+const CartItem = ({ id, media, name, price, quantity, permalink }) => {
     const { setCart } = useCartDispatch()
 
     const handleUpdateCart = ({ cart }) => setCart(cart)
@@ -25,12 +26,14 @@ const CartItem = ({ id, media, name, price, quantity }) => {
                 height='300'
                 objectFit='cover'
             />
-            <div className='my-2 flex justify-between text-xl'>
+            <div className='mt-2 flex justify-between text-xl'>
                 <h2>{name}</h2>
                 <h2>{price.formatted_with_symbol}</h2>
             </div>
+
+           <Link href={`products/${permalink}`}><a className='text-center text-sm mt-1'>See Item Details</a></Link> 
             <div>
-                <div className='flex items-center justify-evenly mt-2'>
+                <div className='flex items-center justify-evenly mt-4'>
                     <button
                         onClick={decrementQty}
                         type='button'
