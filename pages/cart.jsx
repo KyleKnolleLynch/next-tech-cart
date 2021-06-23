@@ -3,6 +3,7 @@ import { useCartState } from '../contexts/CartContext'
 import { useCartDispatch } from '../contexts/CartContext'
 import Link from 'next/link'
 import CartItem from '../components/CartItem'
+import Spinner from '../components/Spinner'
 import { commerce } from '../lib/commerce'
 
 const Cart = () => {
@@ -70,9 +71,7 @@ const Cart = () => {
 
     if (!line_items)
         return (
-            <div className='mt-24 text-center text-xl'>
-                Loading...
-            </div>
+            <Spinner />
         )
 
 
@@ -84,7 +83,6 @@ const Cart = () => {
                 <h1 className='text-2xl md:text-3xl text-center'>My Cart</h1>
                 {line_items.length ? <FilledCart /> : <EmptyCart />}
             </div>
-
         </>
     )
 }

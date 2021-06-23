@@ -8,6 +8,7 @@ import Meta from '../components/Meta'
 import Stepper from '../components/Stepper'
 import AddressForm from '../components/checkoutForm/AddressForm'
 import PaymentForm from '../components/checkoutForm/PaymentForm'
+import Spinner from '../components/Spinner'
 
 const steps = ['Shipping Address', 'Payment Details']
 
@@ -68,47 +69,53 @@ const Checkout = () => {
         nextStep()
     }
 
+ //  clear cart upon mock checkout
+    const clearCart = async () => {   
+        const newCart = await commerce.cart.refresh()
+        setCart(newCart)
+    }
+
+ //   timeout to show confirmation upon mock checkout
     const timeout = () => {
         setTimeout(() => {
             setIsFinished(true)
         }, 3000)
+        clearCart()
     }
 
     let Confirmation = () => order.customer ? (
         <>
-            <div>
-                <h3>
+            <div className='mt-10'>
+                <h3 className='text-2xl'>
                     Thank you for your order, {order.customer.firstname} {order.customer.lastname}
                 </h3>
                 <hr />
-                <h3>
+                <h3 className='mt-4 text-2xl'>
                     Order ref: {order.customer_reference}
                 </h3>
             </div>
-            <br />
-            <Link href='/'><a>
-                <h3>Back to Home</h3>
+            <Link href='/'><a className='text-2xl mt-10 block'>
+                <h3>Back to <span className='text-purple-500 hover:text-purple-400 font-medium'>Home</span></h3>
             </a></Link>
         </>
     ) : isFinished ? (
         <>
-            <div>
-                <h3>
+            <div className='mt-10'>
+                <h3 className='text-2xl'>
                     Thank you for your order!
                 </h3>
                 <hr />
-                <h3>
+                <h3 className='mt-4 text-xl'>
                     You will receive a confirmation email shortly.
                 </h3>
             </div>
-            <br />
-            <Link href='/'><a>
-                <h3>Back to Home</h3>
+            <Link href='/'><a className='text-2xl mt-10 block'>
+                <h3>Back to <span className='text-purple-500 hover:text-purple-400 font-medium'>Home</span></h3>
             </a></Link>
         </>
     ) : (
         <div>
-            Loading...
+            <Spinner />
         </div>
     )
 

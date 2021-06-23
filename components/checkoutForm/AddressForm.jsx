@@ -81,11 +81,9 @@ const AddressForm = ({ proceed, checkoutToken }) => {
                         <label htmlFor='stateLabel' className='block'>State</label>
                         <select
                             name="stateLabel"
-                            //   id="stateLabel"
                             value={shippingState}
                             onChange={e => setShippingState(e.target.value)}
                             required
-                        //  {...register('stateLabel')}
                         >
                             {states.map(state => (
                                 <option key={state.id} value={state.id}>{state.label}</option>
@@ -100,11 +98,9 @@ const AddressForm = ({ proceed, checkoutToken }) => {
                         <label htmlFor='shippingOptionsLabel' className='block'>Shipping Options</label>
                         <select
                             name="shippingOptionsLabel"
-                            //  id="shippingOptionsLabel"
                             value={shippingOption}
                             onChange={e => setShippingOption(e.target.value)}
                             required
-                        // {...register('shippingOptionsLabel')}
                         >
                             {options.map(option => (
                                 <option key={option.id} value={option.id}>{option.label}</option>
@@ -113,7 +109,7 @@ const AddressForm = ({ proceed, checkoutToken }) => {
                     </div>
                 </div>
                 <br />
-                <div className='flex justify-between mt-6'>
+                <div className='flex justify-between mt-6 mb-6'>
                     <Link href='/cart'><a>
                         <button className='text-xl border rounded-full py-1 px-4 bg-purple-500 text-white hover:bg-purple-400 focus:outline-none'>Back to Cart</button>
                     </a></Link>
