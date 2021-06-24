@@ -15,7 +15,7 @@ const Product = ({ media, name, price, permalink, id }) => {
     return (
         <div className='h-full m-auto p-6 shadow flex flex-col justify-evenly'>
             <Link href={`/products/${permalink}`}><a className='group'>
-                <Image src={media.source} width='300' height='300' objectFit='cover' />
+                <Image src={media.source} alt={name} width='300' height='300' objectFit='cover' />
                 <div className='my-2 flex justify-between text-xl'>
                     <h2>{name}</h2>
                     <h2 className='ml-3'>{price.formatted_with_symbol}</h2>

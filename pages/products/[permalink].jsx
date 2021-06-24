@@ -50,7 +50,7 @@ const ProductPage = ({ product }) => {
                 <div className='absolute bottom-52 right-10 lg:bottom-72 xl:bottom-80 xl:right-72 w-32 h-32 md:w-40 md:h-40 lg:w-72 lg:h-72 bg-blue-300 rounded-full opacity-60 mix-blend-multiply blur-xl filter  z-10 animate-orbs animation-delay-2000'></div>
                 <Banner />
                 <section className='sm:w-5/6 max-w-2xl sm:mx-auto mt-24 mb-16 p-4 sm:p-10 flex flex-col bg-gradient-to-tr from-gray-200 to-transparent rounded-lg z-20'>
-                    <Image src={product.media.source} width='450' height='450' objectFit='cover' placeholder='blur' />
+                    <Image src={product.media.source} alt={product.name} width='450' height='450' objectFit='cover' placeholder='blur' />
                     <div className='mt-6'>
                         <div className='flex justify-between text-2xl md:text-3xl'>
                             <h2>{product.name}</h2>
