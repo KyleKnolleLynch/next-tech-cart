@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
+import { CheckoutContext } from '../../contexts/CheckoutContext'
 import { commerce } from '../../lib/commerce'
 
 
 
-const AddressForm = ({ proceed, checkoutToken }) => {
+const AddressForm = () => {
+    const { proceed, checkoutToken } = useContext(CheckoutContext)
     const [shippingStates, setShippingStates] = useState([])
     const [shippingState, setShippingState] = useState('')
     const [shippingOptions, setShippingOptions] = useState([])
@@ -14,7 +16,7 @@ const AddressForm = ({ proceed, checkoutToken }) => {
 
     const states = Object.entries(shippingStates).map(([code, name]) => ({ id: code, label: name }))
     const options = shippingOptions.map(sO => ({ id: sO.id, label: `${sO.description} - (${sO.price.formatted_with_symbol})` }))
-    
+
     const fetchShippingState = async () => {
         const { subdivisions } = await commerce.services.localeListSubdivisions('US')
 
@@ -63,19 +65,19 @@ const AddressForm = ({ proceed, checkoutToken }) => {
                     </div>
                     <div>
                         <label htmlFor='lastName' className='block'>Last Name</label>
-                        <input type="text" name='lastName' placeholder='Last Name' {...register('lastName')} className='w-full'  required />
+                        <input type="text" name='lastName' placeholder='Last Name' {...register('lastName')} className='w-full' required />
                     </div>
                     <div>
                         <label htmlFor='email' className='block'>Email</label>
-                        <input type="email" name='email' placeholder='Email' {...register('email')} className='w-full'  required />
+                        <input type="email" name='email' placeholder='Email' {...register('email')} className='w-full' required />
                     </div>
                     <div>
                         <label htmlFor='address' className='block'>Address</label>
-                        <input type="text" name='address' placeholder='Address' {...register('address')} className='w-full'  required />
+                        <input type="text" name='address' placeholder='Address' {...register('address')} className='w-full' required />
                     </div>
                     <div>
                         <label htmlFor='city' className='block'>City</label>
-                        <input type="text" name='city' placeholder='City' {...register('city')} className='w-full'  required />
+                        <input type="text" name='city' placeholder='City' {...register('city')} className='w-full' required />
                     </div>
                     <div>
                         <label htmlFor='stateLabel' className='block'>State</label>
@@ -92,7 +94,7 @@ const AddressForm = ({ proceed, checkoutToken }) => {
                     </div>
                     <div>
                         <label htmlFor='zip' className='block'>Zip</label>
-                        <input type="text" name='zip' placeholder='Zip' {...register('zip')} className='w-full'  required />
+                        <input type="text" name='zip' placeholder='Zip' {...register('zip')} className='w-full' required />
                     </div>
                     <div>
                         <label htmlFor='shippingOptionsLabel' className='block'>Shipping Options</label>

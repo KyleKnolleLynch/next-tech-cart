@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useContext } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useCartState } from '../contexts/CartContext'
-import { useCartDispatch } from '../contexts/CartContext'
+import { CheckoutContext } from '../contexts/CheckoutContext'
 import { commerce } from '../lib/commerce'
 import Meta from '../components/Meta'
 import Stepper from '../components/Stepper'
@@ -15,31 +15,10 @@ const steps = ['Shipping Address', 'Payment Details']
 
 
 const Checkout = () => {
-    const [order, setOrder] = useState({})
-    const [error, setErrorMessage] = useState('')
-    const [activeStep, setActiveStep] = useState(0)
-    const [checkoutToken, setCheckoutToken] = useState(null)
-    const [shippingData, setShippingData] = useState({})
-    const [isFinished, setIsFinished] = useState(false)
+    const { order, checkoutToken, setCheckoutToken, shippingData, activeStep, isFinished, error } = useContext(CheckoutContext)
     const router = useRouter()
     const { id } = useCartState()
-    const { setCart } = useCartDispatch()
 
-    const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
-        try {
-            const incomingOrder = await commerce.checkout.capture(
-                checkoutTokenId,
-                newOrder
-            )
-
-            setOrder(incomingOrder)
-
-            const newCart = await commerce.cart.refresh()
-            setCart(newCart)
-        } catch (err) {
-            setErrorMessage(err.data.error.message)
-        }
-    }
 
     useEffect(() => {
         let mounted = true
@@ -58,30 +37,7 @@ const Checkout = () => {
         }
 
         return () => mounted = false
-    }, [id])
-
-    const nextStep = () => setActiveStep(prevActiveStep => prevActiveStep + 1)
-
-    const backStep = () => setActiveStep(prevActiveStep => prevActiveStep - 1)
-
-    const proceed = data => {
-        setShippingData(data)
-        nextStep()
-    }
-
- //  clear cart upon mock checkout
-    const clearCart = async () => {   
-        const newCart = await commerce.cart.refresh()
-        setCart(newCart)
-    }
-
- //   timeout to show confirmation upon mock checkout
-    const timeout = () => {
-        setTimeout(() => {
-            setIsFinished(true)
-        }, 3000)
-        clearCart()
-    }
+    }, [])
 
     let Confirmation = () => order.customer ? (
         <>
@@ -102,11 +58,11 @@ const Checkout = () => {
         <>
             <div className='mt-10'>
                 <h3 className='text-2xl'>
-                    Thank you for your order!
+                    Thank you for your order, {shippingData.firstName} {shippingData.lastName}!
                 </h3>
                 <hr />
                 <h3 className='mt-4 text-xl'>
-                    You will receive a confirmation email shortly.
+                    You will receive a confirmation email shortly at {shippingData.email}.
                 </h3>
             </div>
             <Link href='/'><a className='text-2xl mt-10 block'>
@@ -121,19 +77,17 @@ const Checkout = () => {
 
     if (error) {
         <>
-            <h3>
+            <h3 className='text-xl text-red-500'>
                 Error: {error}
             </h3>
             <br />
             <Link href='/'><a>
-                <h3>Back to Home</h3>
+                <h3 className='text-2xl text-purple-500'>Back to Home</h3>
             </a></Link>
         </>
     }
 
-    const Form = () => activeStep === 0
-        ? <AddressForm proceed={proceed} checkoutToken={checkoutToken} />
-        : <PaymentForm shippingData={shippingData} checkoutToken={checkoutToken} backStep={backStep} nextStep={nextStep} onCaptureCheckout={handleCaptureCheckout} timeout={timeout} />
+    const Form = () => activeStep === 0 ? <AddressForm /> : <PaymentForm />
 
     return (
         <>

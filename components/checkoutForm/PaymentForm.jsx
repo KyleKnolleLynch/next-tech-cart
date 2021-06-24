@@ -1,16 +1,19 @@
+import { useContext } from 'react'
 import { Elements, CardElement, ElementsConsumer } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
+import { CheckoutContext } from '../../contexts/CheckoutContext'
 import Review from './Review'
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY)
 
-const PaymentForm = ({ shippingData, checkoutToken, backStep, nextStep, onCaptureCheckout, timeout }) => {
+const PaymentForm = () => {
+    const { shippingData, checkoutToken, backStep, nextStep, handleCaptureCheckout, timeout, error } = useContext(CheckoutContext)
 
     const handleSubmit = async (e, elements, stripe) => {
         e.preventDefault()
 
         ////////////////////////////////////////////////
-        //! currently using mock checkout functionality for this sandbox project...the commented out code below would handle proper stripe to chec.io/commerce.js functionality  
+        //! currently using mock checkout functionality using a timeout function for this sandbox project...the commented out code below would handle proper stripe to chec.io/commerce.js functionality  
         ////////////////////////////////////////////////
 
         // if (!stripe || !elements) return
@@ -46,7 +49,7 @@ const PaymentForm = ({ shippingData, checkoutToken, backStep, nextStep, onCaptur
         //     }
         // }
 
-        onCaptureCheckout(checkoutToken.id, shippingData)
+        // handleCaptureCheckout(checkoutToken.id, orderData)
 
         timeout()
 

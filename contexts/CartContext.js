@@ -56,6 +56,11 @@ export const CartProvider = ({ children }) => {
 export const useCartState = () => useContext(CartContext)
 export const useCartDispatch = () => useContext(CartDispatchContext)
 
+
+//////////////////////////////////////////////////////////
+//!  below code is my basic context layout without using useReducer...the above code is a revised context using useReducer 
+//////////////////////////////////////////////////////////
+
 // const CartContextProvider = ({ children }) => {
 //   const [products, setProducts] = useState([])
 //   const [cart, setCart] = useState({})
