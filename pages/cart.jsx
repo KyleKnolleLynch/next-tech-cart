@@ -79,10 +79,10 @@ const Cart = () => {
         <>
             <Meta title='Tech Cart | My Cart' desc='my shopping cart page for tech cart app' keywords='shopping cart motherboards' />
 
-            <div className='pt-20 pb-10 px-6'>
+            <main className='pt-20 pb-10 px-6'>
                 <h1 className='text-2xl md:text-3xl text-center'>My Cart</h1>
                 {line_items.length ? <FilledCart /> : <EmptyCart />}
-            </div>
+            </main>
         </>
     )
 }

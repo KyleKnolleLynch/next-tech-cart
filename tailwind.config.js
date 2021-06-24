@@ -4,23 +4,26 @@ module.exports = {
   theme: {
     extend: {
       animation: {
-        orbs: 'orbs 7s ease-in-out infinite'
+        orbs: 'orbs 7s ease-in-out infinite',
       },
       keyframes: {
         orbs: {
           '0%': {
-            transform: 'translate(0px, 0px) scale(1)'
+            transform: 'translate(0px, 0px) scale(1)',
           },
           '33%': {
-            transform: 'translate(30px, -50px) scale(1.1)'
+            transform: 'translate(30px, -50px) scale(1.1)',
           },
           '66%': {
-            transform: 'translate(-20px, 20px) scale(0.9)'
+            transform: 'translate(-20px, 20px) scale(0.9)',
           },
           '100%': {
-            transform: 'translate(0px, 0px) scale(1)'
+            transform: 'translate(0px, 0px) scale(1)',
           },
-        }
+        },
+      },
+      zIndex: {
+        '-10': '-10',
       },
     },
     fontFamily: {

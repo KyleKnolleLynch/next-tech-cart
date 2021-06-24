@@ -15,23 +15,27 @@ const NotFound = () => {
   }, [])
 
   return (
-    <div className='min-h-screen flex flex-col'>
+    <>
       <Meta
         title='404'
         robots='robots'
         robotsContent='follow, noarchive, noindex'
       />
-      <Banner />
-      <main className='my-auto px-4 pt-10 sm:mx-auto xl:pt-28 z-50'>
-        <h1 className='text-7xl lg:text-9xl font-medium'>404</h1>
-        <h2 className='text-2xl mt-4'>Ooops! That page cannot be found</h2>
-        <p className='text-lg mt-2'>
-          You will be automatically redirected to the{' '}
-          <Link href='/'><a className='text-xl font-medium text-purple-500'>Homepage</a></Link> in 4 seconds
-        </p>
-      </main>
-      <Footer />
-    </div>
+      <div className='min-h-screen flex flex-col relative overflow-hidden'>
+        <main className='my-auto px-4 pt-10 sm:mx-auto xl:pt-28'>
+          <Banner />
+          <div className='z-50'>
+            <h1 className='text-7xl lg:text-9xl font-medium'>404</h1>
+            <h2 className='text-2xl mt-4'>Ooops! That page cannot be found</h2>
+            <p className='text-lg mt-2'>
+              You will be automatically redirected to the{' '}
+              <Link href='/'><a className='text-xl font-medium text-purple-500'>Homepage</a></Link> in 4 seconds
+            </p>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    </>
   )
 }
 

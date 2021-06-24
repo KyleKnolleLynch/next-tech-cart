@@ -1,6 +1,6 @@
 const Banner = ({ title }) => {
     return (
-        <section className=' absolute -top-28 left-0 right-0 py-12 md:py-24 lg:py-32 bg-gradient-to-tr from-indigo-900 to-purple-400 transform -skew-y-6'>
+        <section className=' absolute -top-28 left-0 right-0 py-12 md:py-24 lg:py-32 bg-gradient-to-tr from-indigo-900 to-purple-400 transform -skew-y-6 -z-10'>
             <div className='pt-36 pb-6 md:pb-4 text-center transform skew-y-6'>
                 <h1 className='text-white text-3xl font-medium md:text-5xl lg:text-7xl'>{title}</h1>
             </div>
