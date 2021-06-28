@@ -28,7 +28,7 @@ export default function Home({ products }) {
     const imgs = [
       <Image src={products[0].media.source} alt='featured motherboard' width='400' height='400' objectFit='cover' placeholder='blur' quality='100' priority />,
 
-      <Image src={products[1].media.source} alt='featured motherboard' width='400' height='400' objectFit='cover' placeholder='blur' quality='100' />,
+      <Image src={products[1].media.source} alt='featured motherboard' width='400' height='400' objectFit='cover' placeholder='blur' quality='100' priority />,
 
       <Image src={products[6].media.source} alt='featured motherboard' width='400' height='400' objectFit='cover' placeholder='blur' quality='100' />,
 
