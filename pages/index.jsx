@@ -23,16 +23,16 @@ export const getStaticProps = async () => {
 
 export default function Home({ products }) {
   const [galleryItems, setGalleryItems] = useState([])
-
+  console.log(products)
   const populateGallery = () => {
     const imgs = [
-      <Image src={products[0].media.source} alt='featured motherboard' width='400' height='400' objectFit='cover' placeholder='blur' quality='100' priority />,
+      <Image src={products[0].media.source} alt='featured motherboard' width='400' height='400' objectFit='cover' placeholder='blur' blurDataURL={products[0].media.source} quality='100' priority />,
 
-      <Image src={products[1].media.source} alt='featured motherboard' width='400' height='400' objectFit='cover' placeholder='blur' quality='100' priority />,
+      <Image src={products[1].media.source} alt='featured motherboard' width='400' height='400' objectFit='cover' placeholder='blur' blurDataURL={products[1].media.source} quality='100' priority />,
 
-      <Image src={products[6].media.source} alt='featured motherboard' width='400' height='400' objectFit='cover' placeholder='blur' quality='100' />,
+      <Image src={products[6].media.source} alt='featured motherboard' width='400' height='400' objectFit='cover' quality='100' />,
 
-      <Image src={products[7].media.source} alt='featured motherboard' width='400' height='400' objectFit='cover' placeholder='blur' quality='100' />,
+      <Image src={products[7].media.source} alt='featured motherboard' width='400' height='400' objectFit='cover' quality='100' />,
 
     ]
     setGalleryItems(imgs)

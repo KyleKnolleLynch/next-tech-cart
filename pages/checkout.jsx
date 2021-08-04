@@ -26,7 +26,7 @@ const Checkout = () => {
         const generateToken = async () => {
             try {
                 const token = await commerce.checkout.generateToken(id, { type: 'cart' })
-
+                
                 setCheckoutToken(token)
             } catch (err) {
                 router.push('/')
